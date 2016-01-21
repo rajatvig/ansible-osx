@@ -1,1 +1,1 @@
-testserver ansible_ssh_host=10.211.55.22 ansible_ssh_port=22
+testserver ansible_ssh_host=10.211.55.25 ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python2
