@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: vagrant
+  vars:
+    repo_url: https://github.com/syl20bnr/spacemacs
+    proj_path: ~/.emacs.d
+  tasks:
+    - name: install vim
+      pacman: name=vim state=latest update_cache=yes
+      become: yes
+      become_method: sudo
+
+    - name: install spf-13
+      action: shell curl http://j.mp/spf13-vim3 -L -o - | sh
+
+    - name: copy custom spacemacs configuration
+      template:
+        src: templates/vimrc.local.j2
+        dest: ~/.vimrc.local
