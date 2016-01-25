@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: vagrant
+  tasks:
+    - name: install direnv
+      command: yaourt -S direnv --noconfirm
+
+    - name: configure .direnvrc
+      template:
+        src: templates/direnvrc.j2
+        dest: ~/.direnvrc
