@@ -1,0 +1,18 @@
+---
+- hosts: all
+  remote_user: vagrant
+  tasks:
+    - name: install git
+      pacman: name=git state=latest update_cache=yes
+      become: yes
+      become_method: sudo
+
+    - name: configure .gitignore_global
+      template:
+        src: templates/gitignore_global.j2
+        dest: ~/.gitignore_global
+
+    - name: configure .gitconfig
+      template:
+        src: templates/gitconfig.j2
+        dest: ~/.gitconfig

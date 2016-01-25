@@ -1,0 +1,14 @@
+[user]
+  name = Rajat Vig
+  email = rajat.vig@gmail.com
+[core]
+  editor = vim
+  excludesfile = {{ ansible_env.HOME }}/.gitignore_global
+[gitreview]
+  username = rajatvig
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+[merge]
+  tool = p4merge
