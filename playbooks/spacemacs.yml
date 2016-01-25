@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: vagrant
+  vars:
+    repo_url: https://github.com/syl20bnr/spacemacs
+    proj_path: ~/.emacs.d
+  tasks:
+    - name: install emacs
+      pacman: name=emacs-nox state=latest update_cache=yes
+      become: yes
+      become_method: sudo
+
+    - name: install spacemacs
+      git: repo={{ repo_url }} dest={{ proj_path }} accept_hostkey=yes
+
+    - name: copy custom spacemacs configuration
+      template:
+        src: templates/spacemacs.el.j2
+        dest: ~/.spacemacs
