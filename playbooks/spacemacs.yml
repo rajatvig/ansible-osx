@@ -5,11 +5,6 @@
     repo_url: https://github.com/syl20bnr/spacemacs
     proj_path: ~/.emacs.d
   tasks:
-    - name: install emacs
-      pacman: name=emacs-nox state=latest update_cache=yes
-      become: yes
-      become_method: sudo
-
     - name: install spacemacs
       git: repo={{ repo_url }} dest={{ proj_path }} accept_hostkey=yes
 

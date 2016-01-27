@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: arch
   remote_user: vagrant
   tasks:
     - name: add archlinuxfr repository to pacman
@@ -21,3 +21,17 @@
         name: yaourt
         state: latest
         update_cache: yes
+
+    - name: install packages
+      pacman:
+        name:
+          - git
+          - emacs-nox
+          - erlang-nox
+        state: latest
+        update_cache: yes
+      become: yes
+      become_method: sudo
+
+    - name: install direnv
+      command: yaourt -S direnv --noconfirm

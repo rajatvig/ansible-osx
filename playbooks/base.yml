@@ -1,8 +1,0 @@
----
-- hosts: all
-  remote_user: vagrant
-  tasks:
-    - name: install git
-      pacman: name=git state=latest update_cache=yes
-      become: yes
-      become_method: sudo
