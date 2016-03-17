@@ -1,7 +1,7 @@
 eval (direnv hook fish)
 
 function e --description='launch new emacs'
-  emacsclient -c $argv
+  emacsclient -tty $argv
 end
 
 function fish_prompt
