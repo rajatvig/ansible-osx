@@ -26,6 +26,7 @@
       pacman:
         name:
           - git
+          - tmux
           - emacs-nox
           - erlang-nox
         state: latest

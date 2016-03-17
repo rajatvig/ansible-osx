@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+    - name: configure .tmux.conf
+      template:
+        src: templates/tmux.conf.j2
+        dest: ~/.tmux.conf
