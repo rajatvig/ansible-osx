@@ -12,3 +12,6 @@
       template:
         src: templates/spacemacs.el.j2
         dest: ~/.spacemacs
+
+    - name: start emacs daemon
+      command: emacs --daemon

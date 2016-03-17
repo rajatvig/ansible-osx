@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: configure fish
+      become: yes
+      become_method: sudo
+      command: chsh -s /usr/bin/fish vagrant
+
+    - name: configure fish
+      template:
+        src: templates/fish.config.j2
+        dest: ~/.config/fish/config.fish

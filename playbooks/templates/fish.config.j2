@@ -1,0 +1,5 @@
+eval (direnv hook fish)
+
+function e --description='launch new emacs'
+  emacsclient -c $argv
+end

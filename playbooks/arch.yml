@@ -2,18 +2,6 @@
 - hosts: arch
   remote_user: vagrant
   tasks:
-    - name: add archlinuxfr repository to pacman
-      become: yes
-      become_method: sudo
-      lineinfile:
-        dest: "/etc/pacman.conf"
-        state: "present"
-        line: "{{ item }}"
-      with_items:
-        - "[archlinuxfr]"
-        - "SigLevel = Never"
-        - "Server = http://repo.archlinux.fr/$arch"
-
     - name: install yaourt
       become: yes
       become_method: sudo
@@ -30,10 +18,8 @@
           - emacs-nox
           - erlang-nox
           - vim
+          - fish
         state: latest
         update_cache: no
       become: yes
       become_method: sudo
-
-    - name: install direnv
-      command: yaourt -S direnv --noconfirm
