@@ -12,6 +12,7 @@
           - vim
           - fish
           - fortune-mod
+          - tree
         state: latest
         update_cache: no
       become: yes
