@@ -1,5 +1,8 @@
 ---
 - hosts: all
+  vars:
+    repo_url: https://github.com/milkbikis/powerline-shell
+    proj_path: ~/config/powerline-shell
   tasks:
     - name: configure fish
       become: yes
@@ -10,3 +13,16 @@
       template:
         src: templates/fish.config.j2
         dest: ~/.config/fish/config.fish
+
+    - name: install powerline
+      git: repo={{ repo_url }} dest={{ proj_path }} accept_hostkey=yes
+
+    - name: configure powerline shell
+      command: ./install.py
+      args:
+        chdir: ~/config/powerline-shell
+
+    - name: create powerline-shell link
+      command: ln -s {{ proj_path }}/powerline-shell.py ~/powerline-shell.py
+      args:
+        creates: ~/powerline-shell.py

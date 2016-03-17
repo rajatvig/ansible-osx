@@ -13,6 +13,14 @@
         - "SigLevel = Never"
         - "Server = http://repo.archlinux.fr/$arch"
 
+    - name: install yaourt
+      become: yes
+      become_method: sudo
+      pacman:
+        name: yaourt
+        state: latest
+        update_cache: yes
+
     - name: install direnv
       command: yaourt -S direnv --noconfirm
 

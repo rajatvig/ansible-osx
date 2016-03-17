@@ -2,14 +2,6 @@
 - hosts: arch
   remote_user: vagrant
   tasks:
-    - name: install yaourt
-      become: yes
-      become_method: sudo
-      pacman:
-        name: yaourt
-        state: latest
-        update_cache: yes
-
     - name: install packages
       pacman:
         name:
@@ -19,6 +11,7 @@
           - erlang-nox
           - vim
           - fish
+          - fortune-mod
         state: latest
         update_cache: no
       become: yes

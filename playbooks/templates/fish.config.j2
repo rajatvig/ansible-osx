@@ -3,3 +3,11 @@ eval (direnv hook fish)
 function e --description='launch new emacs'
   emacsclient -c $argv
 end
+
+function fish_prompt
+    ~/powerline-shell.py $status --shell bare ^/dev/null
+end
+
+function fish_greeting
+  fortune
+end
