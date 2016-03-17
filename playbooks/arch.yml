@@ -29,8 +29,9 @@
           - tmux
           - emacs-nox
           - erlang-nox
+          - vim
         state: latest
-        update_cache: yes
+        update_cache: no
       become: yes
       become_method: sudo
 
