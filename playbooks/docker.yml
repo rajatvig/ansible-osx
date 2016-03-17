@@ -1,0 +1,19 @@
+---
+- hosts: arch
+  remote_user: vagrant
+  tasks:
+    - name: install docker packages
+      pacman:
+        name:
+          - docker
+          - docker-compose
+          - docker-machine
+        state: latest
+        update_cache: no
+      become: yes
+      become_method: sudo
+
+    - name: start docker service
+      become: yes
+      become_method: sudo
+      service: name=docker state=started enabled=yes
