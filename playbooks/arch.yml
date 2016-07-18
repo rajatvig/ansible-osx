@@ -15,6 +15,9 @@
           - tree
           - ttf-inconsolata
           - powerline-fonts
+          - ocaml
+          - ghc
+          - go
         state: latest
         update_cache: no
       become: yes
