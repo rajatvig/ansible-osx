@@ -1,1 +1,1 @@
-arch ansible_ssh_host=10.211.55.37 ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python2
+arch ansible_ssh_host=10.211.55.42 ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python2

@@ -2,12 +2,15 @@
 - hosts: all
   vars:
     repo_url: https://github.com/milkbikis/powerline-shell
-    proj_path: ~/config/powerline-shell
+    proj_path: ~/.config/powerline-shell
   tasks:
     - name: configure fish
       become: yes
       become_method: sudo
       command: chsh -s /usr/bin/fish vagrant
+
+    - name: add fish config
+      command: mkdir -p ~/.config/fish
 
     - name: configure fish
       template:
@@ -20,7 +23,7 @@
     - name: configure powerline shell
       command: ./install.py
       args:
-        chdir: ~/config/powerline-shell
+        chdir: ~/.config/powerline-shell
 
     - name: create powerline-shell link
       command: ln -s {{ proj_path }}/powerline-shell.py ~/powerline-shell.py

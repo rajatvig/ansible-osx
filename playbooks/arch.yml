@@ -13,6 +13,8 @@
           - fish
           - fortune-mod
           - tree
+          - ttf-inconsolata
+          - powerline-fonts
         state: latest
         update_cache: no
       become: yes

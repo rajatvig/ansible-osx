@@ -17,3 +17,8 @@
       become: yes
       become_method: sudo
       service: name=docker state=started enabled=yes
+
+    - name: add user to docker group
+      become: yes
+      become_method: sudo
+      command: usermod -G docker vagrant
