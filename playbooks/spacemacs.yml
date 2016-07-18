@@ -17,6 +17,3 @@
       command: ln -s {{ config_path }}/spacemacs.el ~/.spacemacs
       args:
         creates: ~/.spacemacs
-
-    - name: start emacs daemon
-      command: emacs --daemon
