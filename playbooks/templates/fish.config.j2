@@ -11,7 +11,12 @@ function fish_prompt
 end
 
 function fish_greeting
-  fortune
+  function rnd_animal
+    echo (ls /usr/share/cows/ | shuf -n1)
+  end
+
+  set -l rnd_animal (rnd_animal)
+  fortune | cowsay -f /usr/share/cows/$rnd_animal | toilet -f term --gay
 end
 
 function gst

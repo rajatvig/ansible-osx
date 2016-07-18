@@ -1,26 +1,6 @@
 ---
 - hosts: all
   tasks:
-    - name: add archlinuxfr repository to pacman
-      become: yes
-      become_method: sudo
-      lineinfile:
-        dest: "/etc/pacman.conf"
-        state: "present"
-        line: "{{ item }}"
-      with_items:
-        - "[archlinuxfr]"
-        - "SigLevel = Never"
-        - "Server = http://repo.archlinux.fr/$arch"
-
-    - name: install yaourt
-      become: yes
-      become_method: sudo
-      pacman:
-        name: yaourt
-        state: latest
-        update_cache: yes
-
     - name: install direnv
       command: yaourt -S direnv --noconfirm
 
