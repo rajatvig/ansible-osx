@@ -14,6 +14,16 @@
         - "SigLevel = Never"
         - "Server = http://repo.archlinux.fr/$arch"
 
+    - name: gen locale
+      become: yes
+      become_method: sudo
+      command: locale-gen
+
+    - name: set locale
+      become: yes
+      become_method: sudo
+      command: localectl set-locale LANG=en_US.UTF-8
+
     - name: install yaourt
       become: yes
       become_method: sudo
@@ -48,5 +58,26 @@
       become: yes
       become_method: sudo
 
+    - name: install docker packages
+      pacman:
+        name:
+          - docker
+          - docker-compose
+          - docker-machine
+        state: latest
+        update_cache: no
+      become: yes
+      become_method: sudo
+
+    - name: start docker service
+      become: yes
+      become_method: sudo
+      service: name=docker state=started enabled=yes
+
+    - name: add user to docker group
+      become: yes
+      become_method: sudo
+      command: usermod -G docker vagrant
+
     - name: install from yaourt
-      command: yaourt -S toilet toilet-fonts --noconfirm
+      command: yaourt -S direnv chef-dk toilet toilet-fonts --noconfirm

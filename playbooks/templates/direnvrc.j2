@@ -1,17 +1,14 @@
-use_nvm() {
-  nvm_prefix=$(brew --prefix nvm)
-  . $(brew --prefix nvm)/nvm.sh
-  nvm use
+use_n() {
+  cat .node-version | xargs -I node-version asdf local nodejs node-version
 }
 
 use_python() {
-  local python_root=$PYENV_ROOT/versions/$1
+  local python_root=/usr/local/opt/asdf/installs/python/$1
   load_prefix "$python_root"
   layout_python "$python_root/bin/python"
 }
 
 layout_haskell() {
-  PATH_add ~/.cabal/bin
   [ -d .cabal-sandbox ] || cabal sandbox init
   PATH_add .cabal-sandbox/bin
   export GHC_PACKAGE_PATH=$(cabal exec -- sh -c "echo \$GHC_PACKAGE_PATH")

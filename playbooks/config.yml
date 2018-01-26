@@ -1,0 +1,56 @@
+---
+- hosts: all
+  vars:
+    repo_url: https://github.com/syl20bnr/spacemacs.git
+    proj_path: ~/.emacs.d
+    config_repo_url: https://github.com/rajatvig/spacemacs-config.git
+    config_path: ~/spacemacs
+  tasks:
+    - name: configure locale
+      template:
+        src: templates/locale.conf.j2
+        dest: ~/.config/locale.conf
+
+    - name: configure .gitignore_global
+      template:
+        src: templates/gitignore_global.j2
+        dest: ~/.gitignore_global
+
+    - name: configure .gitconfig
+      template:
+        src: templates/gitconfig.j2
+        dest: ~/.gitconfig
+
+    - name: configure .direnvrc
+      template:
+        src: templates/direnvrc.j2
+        dest: ~/.direnvrc
+
+    - name: make fish default shell
+      become: yes
+      become_method: sudo
+      command: chsh -s /usr/bin/fish vagrant
+
+    - name: add fish config
+      command: mkdir -p ~/.config/fish
+
+    - name: configure fish
+      template:
+        src: templates/fish.config.j2
+        dest: ~/.config/fish/config.fish
+
+    - name: configure .tmux.conf
+      template:
+        src: templates/tmux.conf.j2
+        dest: ~/.tmux.conf
+
+    - name: install spacemacs
+      git: repo={{ repo_url }} dest={{ proj_path }} accept_hostkey=yes
+
+    - name: install spacemacs config
+      git: repo={{ config_repo_url }} dest={{ config_path }} accept_hostkey=yes
+
+    - name: create config link
+      command: ln -s {{ config_path }}/spacemacs.el ~/.spacemacs
+      args:
+        creates: ~/.spacemacs
