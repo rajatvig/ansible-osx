@@ -12,4 +12,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
     `vagrant ssh -c "ip addr show eth1 | grep -oP 'inet \K\S[0-9.]+'"`
   end
+  config.vm.synced_folder "~/work", "/work"
 end

@@ -35,6 +35,7 @@
     - name: install packages
       pacman:
         name:
+          - base-devel
           - git
           - tmux
           - emacs-nox
@@ -46,6 +47,7 @@
           - ttf-inconsolata
           - powerline-fonts
           - ocaml
+          - opam
           - ghc
           - go
           - rust
@@ -53,14 +55,11 @@
           - the_silver_searcher
           - aws-cli
           - cowsay
-        state: latest
-        update_cache: no
-      become: yes
-      become_method: sudo
-
-    - name: install docker packages
-      pacman:
-        name:
+          - fakeroot
+          - ruby
+          - ruby-bundler
+          - nodejs
+          - yarn
           - docker
           - docker-compose
           - docker-machine

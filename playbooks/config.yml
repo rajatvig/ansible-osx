@@ -1,11 +1,17 @@
 ---
 - hosts: all
+  remote_user: vagrant
   vars:
-    repo_url: https://github.com/syl20bnr/spacemacs.git
-    proj_path: ~/.emacs.d
-    config_repo_url: https://github.com/rajatvig/spacemacs-config.git
-    config_path: ~/spacemacs
+    repo_url_spacemacs: https://github.com/syl20bnr/spacemacs.git
+    repo_url_spacemacs_config: https://github.com/rajatvig/spacemacs-config.git
+    path_emacs_d: ~/.emacs.d
+    path_config_spacemacs: ~/.config/spacemacs
   tasks:
+    - name: create .config
+      file:
+        path: ~/.config
+        state: directory
+
     - name: configure locale
       template:
         src: templates/locale.conf.j2
@@ -32,7 +38,9 @@
       command: chsh -s /usr/bin/fish vagrant
 
     - name: add fish config
-      command: mkdir -p ~/.config/fish
+      file:
+        path: ~/.config/fish
+        state: directory
 
     - name: configure fish
       template:
@@ -45,12 +53,12 @@
         dest: ~/.tmux.conf
 
     - name: install spacemacs
-      git: repo={{ repo_url }} dest={{ proj_path }} accept_hostkey=yes
+      git: repo={{ repo_url_spacemacs }} dest={{ path_emacs_d }} accept_hostkey=yes
 
     - name: install spacemacs config
-      git: repo={{ config_repo_url }} dest={{ config_path }} accept_hostkey=yes
+      git: repo={{ repo_url_spacemacs_config }} dest={{ path_config_spacemacs }} accept_hostkey=yes
 
     - name: create config link
-      command: ln -s {{ config_path }}/spacemacs.el ~/.spacemacs
+      command: ln -s {{ path_config_spacemacs }}/spacemacs.el ~/.spacemacs
       args:
         creates: ~/.spacemacs
