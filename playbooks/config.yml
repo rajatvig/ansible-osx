@@ -62,3 +62,14 @@
       command: ln -s {{ path_config_spacemacs }}/spacemacs.el ~/.spacemacs
       args:
         creates: ~/.spacemacs
+
+    - name: get install script
+      get_url:
+        url: https://spacevim.org/install.sh
+        dest: ~/.config/install-vim.sh
+        mode: 0555
+
+    - name: configure vim
+      command: ~/.config/install-vim.sh
+      args:
+        creates: ~/.SpaceVim

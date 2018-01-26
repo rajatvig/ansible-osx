@@ -13,4 +13,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     `vagrant ssh -c "ip addr show eth1 | grep -oP 'inet \K\S[0-9.]+'"`
   end
   config.vm.synced_folder "~/work", "/work"
+  config.vm.synced_folder "~/dotfiles", "/dotfiles"
 end
