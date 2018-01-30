@@ -1,25 +1,12 @@
-Arch Linux Development Setup
--------------
+Arch Linux
+----------
 
-Ansible based Playbooks to configure an Arch Linux as a development machine.
-Currently tested inside a Vagrant Box running on Mac OS X in Parallels.
+Ansible Playbooks to configure an Arch Linux as a development machine on VirtualBox.
 
 ### Playbooks
 
 ##### Arch
-Base Development Software
+Software Development Kits
 
-#### [Direnv](http://direnv.net)
-
-#### Docker
-
-#### Fish Shell
-Configure and Install
-
-#### Git
-
-#### Spacemacs
-
-#### Tmux
-
-#### Vim
+#### Config
+Configuration of SDKs
